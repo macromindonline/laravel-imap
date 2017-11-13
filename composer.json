@@ -1,5 +1,5 @@
 {
-    "name": "webklex/laravel-imap",
+    "name": "macromindonline/laravel-imap",
     "type": "library",
     "description": "Laravel IMAP client",
     "keywords": [
@@ -9,7 +9,7 @@
         "laravel-imap",
         "mail"
     ],
-    "homepage": "https://github.com/webklex/laravel-imap",
+    "homepage": "https://github.com/macromindonline/laravel-imap",
     "license": "MIT",
     "authors": [
         {
