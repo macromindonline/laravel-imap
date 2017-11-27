@@ -138,7 +138,7 @@ class Message {
     }
     
     public function get() {
-        return $this->parseBody()
+        return $this->parseBody();
     }
 
     /**
