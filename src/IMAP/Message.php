@@ -136,6 +136,10 @@ class Message {
         $this->parseHeader();
         $this->parseBody();
     }
+    
+    public function get() {
+        return $this->parseBody()
+    }
 
     /**
      * Copy the current Messages to a mailbox
@@ -226,13 +230,20 @@ class Message {
         if ($header) {
             $header = imap_rfc822_parse_headers($header);
         }
+        
+        $this->references = '';
+        if(property_exists($header,'references')){
+             $this->references =  str_replace(['<', '>'], '', $header->references);
+             $this->references = str_replace(' ', ',', $this->references);
+         }
 
         if (property_exists($header, 'subject')) {
             $this->subject = imap_utf8($header->subject);
         }
-        if (property_exists($header, 'date')) {
-            $this->date = Carbon::parse($header->date);
-        }
+        
+        //if (property_exists($header, 'date')) {
+        //    $this->date = Carbon::parse($header->date);
+        //}
 
         if (property_exists($header, 'from')) {
             $this->from = $this->parseAddresses($header->from);
