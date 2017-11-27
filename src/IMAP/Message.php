@@ -421,6 +421,11 @@ class Message {
         if (property_exists($structure, 'id')) {
             $attachment->id = str_replace(['<', '>'], '', $structure->id);
         }
+        
+        $attachment->size = 0;
+	    if (property_exists($structure, 'bytes')){
+		    $attachment->size = $structure->bytes;
+	    }
 
         $attachment->name = false;
         if (property_exists($structure, 'dparameters')) {
@@ -447,7 +452,7 @@ class Message {
             $attachment->img_src = 'data:'.$attachment->content_type.';base64,'.base64_encode($attachment->content);
         }
 
-        if(property_exists($attachment, 'name')){
+        if (property_exists($attachment, 'name')){
             if($attachment->name != false){
                 if ($attachment->id) {
                     $this->attachments[$attachment->id] = $attachment;
